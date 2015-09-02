@@ -1,0 +1,163 @@
+---
+title: "609 - Week 1 Homework"
+author: "Ben Arancibia"
+date: "September 1, 2015"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+```{r, echo=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+__Page 8__ 
+
+10) Your grandparents have an annuity. The value of the annuity increases each month by an automatic deposit of 1% interest on the previous month's balance. Your grandparents withdraw $1000 at the beginning of each month for living expenses. Currently, they have $50,000 in the annuity. Model the annuity with a dynamical system. Will the annuity run out of money? When? Hint: What value will an have when the annuity is depleted?
+
+$a_{n+1} = a_n + 0.01a_n - 1000$
+$a_0 = 50000$
+
+```{r}
+a <- 50000
+rate <- 0.01
+withdrawl <- 1000
+
+model <- function(an, i, w)
+  {
+  a_plus <- an + (an * i) - w
+  return (a_plus)
+  }
+
+years <- data.frame(month=c(0), value=c(a))
+for(n in 1:100)
+{
+  a <- model(a, rate, withdrawl)
+  
+  years <- rbind(years, c(n, a))
+  
+  if(a < 0)
+  {
+    break
+  }
+}
+
+colnames(years) <- c("month", "value")
+
+tail(years)
+
+p <- ggplot(years, aes(x=month, y=value)) + geom_line()
+p
+```
+
+Annuity will run out at at Month 70.
+
+__Page 17__
+
+9)
+
+The data in the accompanying table show the speed n (in increments of 5 mph) of an automobile and the associated distance an in feet required to stop it once the brakes are applied. For instance, n = 6 (representing 6 * 5  = 30 mph) requires a stopping distance of a6=47 ft.
+
+Create figure in book.
+```{r}
+n <- 1:16
+a_naught <- c(3,6,11,21,32,47,65,87,112,140,171,204,241,282,325,376)
+mph <- (n * 5)
+```
+
+a. Calculate and plot the change a n versus n. Does the graph reasonably approximate a linear relationship?
+
+```{r}
+delta_naught <- c()
+d_naught <- NA
+for(i in 1:length(a_naught))
+{
+  delta_naught[i] <- a_naught[i] - a_naught[i - 1] 
+}
+data <- data.frame(n, mph, a_naught, delta_naught)
+
+p1 <- ggplot(data, aes(x=delta_naught, y=n)) + geom_line()
+p1
+```
+
+Yes there is a reasonable approximate liner relationship.
+
+b. Based on your conclusions in part a, find a difference equation model for the stopping distance data. Test your model by plotting the errors in the predicted values against n. Discuss the appropriateness of the model.
+
+find slope
+```{r}
+change_delta <- max(data$delta_naught, na.rm=TRUE)
+change_delta_n <- max(data$n)
+slope <- change_delta/change_delta_n
+```
+
+Difference equation model
+```{r}
+a_naught <- c(3,6,11,21,32,47,65,87,112,140,171,204,241,282,325,376)
+model <- function(n, a, slope)
+{
+    an <- slope * n + a
+    return(an)
+}
+
+m <- c()
+m[1] <- 0
+for(i in 2:length(a_naught))
+{
+  m[i] <- model(i, m[i-1], slope)
+}
+
+data1 <- cbind(data, m)
+data1
+
+data1$err <- data1$a_n - data1$m
+data1err <- ggplot(data=data1, aes(x=n)) + geom_point(color="red", aes(y=err))
+data1err
+```
+
+As values are increase, the error increases.
+
+__Page 34__
+
+13) Consider the spreading of a rumor through a company of 1000 employees, all working in the same building. We assume that the spreading of a rumor is similar to the spreading of a contagious disease (see Example 3, Section 1.2) in that the number of people hearing the rumor each day is proportional to the product of the number who have heard the rumor previously and the number who have not heard the rumor. This is given by:
+
+$rn+1 = rn + krn (.1000-n)$
+
+where k is a parameter that depends on how fast the rumor spreads and n is the number of days. Assume $k=0.001$ and further assume that four people initially have heardthe rumor. How soon will all 1000 employees have heard the rumor?
+
+```{r}
+model <- function(k, rn, n)
+{
+  rn1 <- rn + (k * rn * (1000 - n))
+  return (rn1)
+}
+
+rnx <- c()
+rnx[1] <- 4
+k <- 0.001
+for(n in 1:100)
+{
+  rnx[n + 1] <- model(k, rnx[n], n)
+  if(rnx[n+1] > 1000)
+  {
+    break
+  }
+}
+
+rnx
+
+```
+
+
+__Page 55__
+
+6) An economist is interested in the variation of the price of a single product. It is observed that a high price for the product in the market attracts more suppliers. However, increasing the quantity of the product supplied tends to drive the price down. Overtime, there is an interaction between price and supply. The economist has proposed the following model, where Pn represents the price of the product at year n, and Q n represents the quantity. Find the equilibrium values for this system.
+
+a. Does the model make sense intuitively? What is the signicance of the constants 100 and 500? Explain the signicance of the signs of the constants  0:1 and 0.2.
+
+Referring back to the exercise's write-up, "increasing quantity of the product supplied tends to drive the price down". We see this in the price equation where a Q > 500 will begin reducing the price. Likewise, "a high price for the product in the market attracts more suppliers". Again, we can see this in the quantity equation where P > 100 will increase the quantity supplied. The constants 100 and 500 represent threshold values where the price and quantity respectively change their effect on the others outcome. The signs of the constants -0.1 and 0.2 are key to representing the economic behaviour of more suppliers puts downward pressure on prices, and higher prices encourages more suppliers.
+
+b. Test the initial conditions in the following table and predict the long-term behavior.
+
+
