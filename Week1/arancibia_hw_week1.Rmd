@@ -7,9 +7,8 @@ output:
     latex_engine: xelatex
 ---
 
-```{r, echo=FALSE}
+```{r, echo=FALSE, warning=FALSE}
 library(ggplot2)
-library(dplyr)
 ```
 
 __Page 8__ 
@@ -154,10 +153,47 @@ __Page 55__
 
 6) An economist is interested in the variation of the price of a single product. It is observed that a high price for the product in the market attracts more suppliers. However, increasing the quantity of the product supplied tends to drive the price down. Overtime, there is an interaction between price and supply. The economist has proposed the following model, where Pn represents the price of the product at year n, and Q n represents the quantity. Find the equilibrium values for this system.
 
-a. Does the model make sense intuitively? What is the signicance of the constants 100 and 500? Explain the signicance of the signs of the constants  0:1 and 0.2.
+a. Does the model make sense intuitively? What is the significance of the constants 100 and 500. Explain the significance of the signs of the constant -0.1 and 0.2.
 
-Referring back to the exercise's write-up, "increasing quantity of the product supplied tends to drive the price down". We see this in the price equation where a Q > 500 will begin reducing the price. Likewise, "a high price for the product in the market attracts more suppliers". Again, we can see this in the quantity equation where P > 100 will increase the quantity supplied. The constants 100 and 500 represent threshold values where the price and quantity respectively change their effect on the others outcome. The signs of the constants -0.1 and 0.2 are key to representing the economic behaviour of more suppliers puts downward pressure on prices, and higher prices encourages more suppliers.
+Yes these make sense because they zero out the second term in each equation and produce X(n+1)=X_n0. Increasing quantity of the product supplied tends to drive the price down and a high price for the product in the market attracts more suppliers. The constants 100 and 500 are values where the price and quantity respectively change their effect on the others outcome. The signs of the constants -0.1 and 0.2 represent the economic behaviour of more suppliers decreaing prices, and higher prices increases suppliers.
 
 b. Test the initial conditions in the following table and predict the long-term behavior.
 
+```{r}
+model <- function(p, q){
+  px <- p - (0.1 * (q - 500))
+  return (px)
+}
 
+model1 <- function(p, q){
+  qx <- q + (0.2 * (p - 100))
+  return (qx)
+}
+
+execModelLoop <- function(pnaught, qnaught, maxN, caseId)
+{
+  pnc <- c()
+  pnc[1] <- pnaught
+  
+  qnc <- c()
+  qnc[1] <- qnaught
+  for(n in 1:maxN)
+  {
+    pnc[n + 1] <- model(pnc[n], qnc[n])
+    qnc[n + 1] <- model1(pnc[n], qnc[n])
+  }
+  
+df <- data.frame(case=rep_len(caseId, maxN+1), n=1:(maxN+1), pnc, qnc)
+  return (df)
+}
+
+maxIterations <- 100
+
+CaseA <- execModelLoop(100, 500, maxIterations, "result")
+head(CaseA)
+
+f <- ggplot(CaseA, aes(x=n, y=pnc))+geom_line()
+f
+```
+
+The conditions show that the equalibrium conditions are in a stable values and do not shift from the initial price.
