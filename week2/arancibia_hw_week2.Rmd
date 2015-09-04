@@ -1,0 +1,46 @@
+---
+title: "IS 609 Homework Week 2"
+author: "Ben Arancibia"
+date: "September 3, 2015"
+output: pdf_document
+---
+
+__Page 69__ 
+
+Identify a problem worth studying and list the variables that affect the behavior you have identified. Which variables would be neglected completely? Which might be considered as constants initially? Can you identify any submodels you would want to study in detail? Identify any data you would want collected.
+
+12) A company with a fleet of trucks faces increasing maintenance costs as the age and mileage of the trucks increase.
+
+A problem worth studying is looking at how the cost of mainting a truck fluctuates over the life of a truck. Variables that should be part of the model are: Truck Model, Age, MPG, maintenance cost, part needing replacing. I would ignore average speed of the trucks because of the difficultly to accurately record. A good constant would be the model of the truck. A submodel that would be good is to look at how maintenance costs are tied to the type of weather that the types of trucks endure. Data I would want to collect is maintenance cost, parts replaced, age, mileage, and MPG for the the past 25 years.
+
+__Page 79__ 
+ 
+ Determine if the data set supports the stated proportionality model.
+ 
+ 11) $y alpha x^3$
+ 
+```{r, tidy=TRUE}
+library(ggplot2)
+
+y <- c(0,1,2,6,14,24,37,58,82,114)
+x <- c(1,2,3,4,5,6,7,8,9,10)
+x3 <- x^3
+k <- y / x3
+prop <- x3 * k
+mk <- median(k)
+propm <-  mk * x3
+data <- data.frame(x,y,x3,k,prop,propm)
+knitr::kable(data)
+
+f1 <- ggplot(data) + geom_line(aes(x=x, y=y)) + geom_line(aes(x=x, y=propm), colour="blue") + labs(title="Proportionality, Blue = model")
+f1
+```
+
+
+__Page 94__ 
+
+4)
+
+ 
+ 
+
