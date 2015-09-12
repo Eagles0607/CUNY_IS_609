@@ -54,6 +54,6 @@ df <- data.frame(x,y)
 lm <- lm(y ~ x, df)
 lm$coefficients
 
-f3 <- ggplot(data=df) + geom_point(aes(x=x, y=y)) + geom_abline(intercept=lm$coefficients[1], slope=lm$coefficients[2])
+f3 <- ggplot(data=df) + geom_point(aes(x=x, y=y)) + geom_abline(intercept= 2.214853, slope=0.5642337)
 f3
 ```
