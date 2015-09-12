@@ -57,3 +57,60 @@ lm$coefficients
 f3 <- ggplot(data=df) + geom_point(aes(x=x, y=y)) + geom_abline(intercept= 2.214853, slope=0.5642337)
 f3
 ```
+
+
+__127__
+
+10) Fit the data with the models given using least squares. Data for planets. Fit the model $y=ax^(3/2)$
+
+```{r}
+body <- c("Mercury", "Venus", "Earth", "Mars", 
+          "Jupiter", "Saturn", "Uranus", "Neptune")
+period <- c(7.6 * 10^6, 1.94 * 10^7, 3.16 * 10^7, 
+            5.94 * 10^7, 3.74 * 10^8, 9.35 * 10^8, 
+            2.64 * 10^9, 5.22 * 10^9)
+distance <- c(5.79 * 10^10, 1.08 * 10^11, 1.5 * 10^11, 
+              2.28 * 10^11, 7.79 * 10^11, 1.43 * 10^12, 
+              2.87 * 10^12, 4.5 * 10^12)
+df <- data.frame(body, period, distance)
+df
+```
+
+Least-squares equation for power curve where $n=3/2$, x=period and y=distance.
+
+```{r}
+n <- 3/2
+
+model <- function (x, y, n)
+{
+  numerator <- sum(y * x^n)
+  denominator <- sum(x^(2*n))
+  print(numerator)
+  print(denominator)
+  result <- numerator / denominator
+  return (result)
+}
+
+a <- model(df$period, df$distance, n)
+a
+
+planet <- function(a, x, n)
+{
+  yestimate <- a * (x^(n))
+  return(yestimate)
+}
+
+x_vals <- seq(min(df$period), max(df$period), by=100000)
+y_mest <- planet(a, x_vals, n)
+dfplanet<- data.frame(x_vals, y_mest)
+
+```
+
+Original data points and the model plotted.
+
+```{r}
+f4 <- ggplot(df) + geom_point(aes(x=period, y=distance)) + geom_line(data=dfplanet, aes(x=x_vals, y=y_mest)) 
+f4
+```
+
+Squared deviations may be minimized, but the model does not do a good job representing the data.
