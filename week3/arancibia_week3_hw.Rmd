@@ -1,0 +1,59 @@
+---
+title: "Homework Week 3"
+author: "Ben Arancibia"
+date: "September 12, 2015"
+output: pdf_document
+---
+
+__113__
+
+2) The following table gives the elongation $e$ in inches per inch (in./in.) for a given stress S on a streel wire measured in pounds per square inch ($lb/in^2$). Test the model $e=c1S$ by potting the data. Estimate $c1$ graphically.
+
+```{r}
+S <- c(5,10,20,30,40,50,60,70,80,90,100)
+e <- c(0,19,57,94,134,173,216,256,297,343,390)
+S <- S * 10^-3
+e <- e * 10^5
+
+c <- e / S
+
+df <- data.frame(S, e, c)
+knitr::kable(df)
+```
+
+Now estimate the model where c1 is the median and plot the results.
+```{r}
+c1 <- median(c)
+c1
+
+library(ggplot2)
+f1 <-ggplot(data=df) + geom_point(aes(x=S, y=e)) + geom_abline(intercept=0, slope=c1) 
+f1
+```
+
+Estimate the model using slow and plot the results.
+```{r}
+c1 <- (e[length(e)] - e[1]) / (S[length(S)] - S[1])
+c1
+f2 <-ggplot(data=df) + geom_point(aes(x=S, y=e)) + geom_abline(intercept=0, slope=c1) 
+f2
+```
+
+Median approach is a little better than purely by the slow approach. The best approach would be a mixture of slope plus intercept.
+
+__121__
+
+2a) For each of the following data sets, formulate the mathematical model that minimizes the largest deviation between the data and the line y = ax+b. If a computer is available, solve for the estimates of a and b.
+
+```{r, tidy=TRUE}
+x <- c(1.0,2.3,3.7,4.2,6.1,7.0)
+y <- c(3.6,3.0,3.2,5.1,5.3,6.8)
+
+df <- data.frame(x,y)
+
+lm <- lm(y ~ x, df)
+lm$coefficients
+
+f3 <- ggplot(data=df) + geom_point(aes(x=x, y=y)) + geom_abline(intercept=lm$coefficients[1], slope=lm$coefficients[2])
+f3
+```
