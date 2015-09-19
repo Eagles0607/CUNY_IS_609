@@ -1,0 +1,168 @@
+---
+title: "IS609 Week 4 Homework"
+author: "Ben Arancibia"
+date: "September 19, 2015"
+output: pdf_document
+---
+
+__191__
+
+3) Using the Monte Carlo simulation, write an algorithm to calculate an approximation to $pi$ by considering the number of random points selected inside the quarter circle
+
+\[Q:x^2+y^2=1, x \geq 0, y \geq 0 \]
+
+where the quarter circle is taken to be inside the square
+
+\[S: 0 \leq x \leq 1 \text{ and } 0 \leq y \leq 1\]
+
+Use the equation $pi/4$ = area $Q/area S$.
+
+```{r}
+qcircle<- function(x)
+{
+  val <- sqrt((-1 * x^2) + 1)
+  return (val)
+}
+mcarlo <- function(n)
+{
+  dfpoints <- data.frame()
+  x <- runif(n)
+  y <- runif(n)
+  yq <- qcircle(x)
+  inside <- y <= yq
+  
+  dfpoints <- rbind(dfpoints, cbind(x, y, yq, inside))
+  
+  return (dfpoints)
+}
+
+mc <- 100
+n_points <- 5000
+dfmcpi <- data.frame()
+for(i in 1:mc)
+{
+  dfmcpoints <- mcarlo(n_points)
+  qca <- sum(dfmcpoints$inside) / nrow(dfmcpoints)
+  qca
+  pi_est <- qca * 4
+  pi_est
+  dfmcpi <- rbind(dfmcpi, cbind(i, pi_est))
+}
+head(dfmcpi)
+median(pi_est)
+mean(pi_est)
+
+library(ggplot2)
+f <- ggplot(data=dfmcpoints) + geom_point(aes(x=x, y=y, color=inside))+scale_colour_gradient(low="red", high="white")
+f
+```
+
+
+__194__
+
+1) Use the middle-square method to generate
+
+```{r}
+middlesquare<- function(xn)
+{
+  l_x0 <- stringr::str_length(as.character(xn))
+  s1 <- xn^2
+  str1 <- as.character(s1)
+  l <- stringr::str_length(str1)
+  if(l < (l_x0 * 2))
+  {
+    str1 <- sprintf("%s%s", "0", str1)
+  }
+  start <- (l_x0 / 2) + 1
+  end <- start + l_x0 - 1
+  strRnd <- stringr::str_sub(str1, start, end)
+  return (as.numeric(strRnd))
+}
+genRands <- function(n, seed)
+{
+  msRands <- c()
+  xi <- seed
+  for(i in 1:n)
+  {
+    xi <- middlesquare(xi)
+    msRands[i] <- xi
+  }
+  return (msRands)
+}
+```
+
+a) 10 random numbers using x0 = 1009
+
+```{r}
+x0 <- 1009
+genRands(10, x0)
+```
+
+b) 20 random numbers using x0 = 653217
+```{r}
+x0 <- 653217
+genRands(20, x0)
+```
+
+c) 15 random numbers using x0 = 3043
+```{r}
+x0 <- 3043
+genRands(15, x0)
+```
+
+d) Comment about the results of each sequence. was there cycling? Did each sequence degenerate rapidly?
+
+A degenerated to a constant after 4 iterations. B the values are decreasing but there have not cycled. C the values degenerated quickly. Each sequence did not generate rapidly. 
+
+####NOTE I was not sure if the 5.3 homework problem was supposed to be in the project or problem set of the book. Based on previous homeworks our problems tend to be in the problem section of the book and not the projects section.
+
+4) Given loaded dice according to the following distribution, use Monte Carlo simulation to simulate the sum of 300 rolls of two unfair dice.
+
+```{r, echo=FALSE}
+# Setup data frames with the probability data for each die.
+die1 <- data.frame(seq(1,6), c(0,0.1,0.2,0.4,0.7,0.9), c(0.1,0.2,0.4,0.7,0.9,1.0))
+colnames(die1) <- c("roll", "pstart", "pfinish")
+die1$p <- die1$pfinish - die1$pstart
+die1
+# Die 2 probability data frame
+die2 <- data.frame(seq(1,6), c(0,0.3,0.4,0.6,0.7,0.75), c(0.3,0.4,0.6,0.7,0.75,1.0))
+colnames(die2) <- c("roll", "pstart", "pfinish")
+die2$p <- die2$pfinish - die2$pstart
+die2
+```
+
+```{r}
+dieoutcome <- function(dfDie, xk)
+{
+  res <- 0
+  for(j in 1:nrow(dfDie))
+  {
+    if(dfDie$pstart[j] < xk && xk <= dfDie$pfinish[j])
+    {
+      res <- dfDie$roll[j]
+    }
+  }
+
+  return(res)
+}
+# Loop through the 300 rolls of the Monte Carlo 
+# simulation to simulate the rolls of the unfair dice.
+n = 300
+rollcount <- data.frame(sum=seq(2,12), count=rep(0, 11))
+for(i in 1:n)
+{
+  # 2 uniform random numbers.
+  x <- runif(2)
+  # Convert to die roll values
+  x1Res <- dieoutcome(die1, x[1])
+  x2Res <- dieoutcome(die2, x[2])
+  # print(sprintf("Roll %d: %d, %d", i, x1Res, x2Res))
+  # Increment the counter
+  lookup <- rollcount$sum==x1Res+x2Res
+  rollcount[lookup,]$count <- rollcount[lookup,]$count + 1
+}
+# Show the results.
+rollcount$result <- rollcount$count / n
+rollcount
+```
+
