@@ -1,0 +1,29 @@
+---
+title: "IS 609 Homework Week 7"
+author: "Ben Arancibia"
+date: "October 10, 2015"
+output: pdf_document
+---
+
+__Page 304__
+
+2) The bridges and land masses of a certain city can be modeled with graph G in Figure 8.7.
+
+![Figure 8.7](//Users/bcarancibia/CUNY_IS_609/week7/87.png)
+
+a. Is G Eulerian? Why or why not?
+
+No Graph G is not Eulerian because there is not a pth between each pair of vertices and there are vertices with odd number of paths. 
+
+b. Suppose we relax the requirement of the walk so that the walker need not start and end at the same land mass but still must traverse every bridge exactly once. Is this type of walk possible in a city modeled by the graph in Figure 8.7? If so, how? If not, why not?
+
+Yes it is possible for the walker to traverse each bridge once. They can do this by starting at point 5 and then going to the following points in this exact order: 3, 1, 2, 4, 6, 5, 4, 3, 2.
+
+
+__Page 307__
+
+1)
+
+__320__
+
+10)
