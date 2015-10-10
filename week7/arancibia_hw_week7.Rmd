@@ -22,8 +22,56 @@ Yes it is possible for the walker to traverse each bridge once. They can do this
 
 __Page 307__
 
-1)
+1) Consider the graph in Figure 8.11.
+
+![Figure 8.11](//Users/bcarancibia/CUNY_IS_609/week7/811.png)
+
+a. Write down the set of edges E(G).
+
+{ab,ae,bc,bd,cd,de,df,ef,fa}
+
+b. Which edges are incident with vertex b?
+
+ab, bc, bd
+
+
+c. Which vertices are adjacent to vertex c ?
+
+Vertices b
+
+d. Compute deg(a)
+
+deg(a) = 3 because there are 3 edges
+
+e. Compute |E(G|
+
+There are 9 edges. Hexagon (6) + 3 extra edges.
 
 __320__
 
-10)
+10) A basketball coach needs to finnd a starting lineup for her team. There are five positions that must be filled: point guard (1), shooting guard (2), swing (3), power forward (4), and center (5). Given the data in Table 8.7, create a graph model and use it to find a feasible starting lineup. What changes if the coach decides she can't play Hermione in position 3?
+
+![Table 8.7](//Users/bcarancibia/CUNY_IS_609/week7/871.png)
+
+```{r, tidy=TRUE}
+library(igraph)
+library(ggplot2)
+
+positions <- c("Alice",1, "Alice",2, "Bonnie",1, "Courtney",1,"Courtney",2, "Deb", 3,"Deb",4,"Deb",5,"Ellen",2,"Fay", 1, "Gladys",3,"Gladys",4,"Hermione",2,"Hermione",3)
+
+graph <- make_graph(positions, directed=FALSE)
+plot(graph)
+```
+
+A possible starting lineup is:
+
+Position | Player
+------------- | -------------
+1 | Bonnie
+2 | Ellen
+3 | Hermoine
+4 | Gladys
+5 | Deb
+
+If Hermione cannot play position 3 then there is not a feasible line up. This is because Gladys would have to move to position 3, but there would be no one to take her position 4 because Deb is already slated into position 5. 
+
