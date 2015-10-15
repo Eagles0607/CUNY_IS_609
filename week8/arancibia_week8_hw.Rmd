@@ -1,0 +1,57 @@
+---
+title: "IS 609 Week 8 Homework"
+author: "Ben Arancibia"
+date: "October 14, 2015"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+__347__
+
+4) We have engaged in a business venture. Assume the probability of success is P(s)=2/5; further assume that if we are successful we make $55,000, and if we are unsuccessful we lose $1750. Find the expected value of the business venture.
+
+```{r}
+Ps <- 2/5
+v <- 55000
+fail.v <- -1750
+
+E <- (Ps * v) + ((1 - Ps) * fail.v)
+E
+```
+
+6) Consider a firm handling concessions for a sporting event. The firm's manager needs to know whether to stock up with coffee or cola and is formulating policies for specific weather predictions. A local agreement restricts the firm to selling only one type of beverage. The firm estimates a $1500 profit selling cola if the weather is cold and a $5000 profit selling cola if the weather is warm. The firm also estimates a $4000 profit selling coffee if it is cold and a $1000 profit selling coffee if the weather is warm. The weather forecast says that there is a 30% of a cold front; otherwise, the weather will be warm. Build a decision tree to assist with the decision. What should the firm handling concessions do?
+
+```{r}
+cola_warm <- 5000
+cola_cold <- 1500
+
+coffee_warm <- 1000
+coffee_cold <- 4000
+
+cold <- 0.3
+
+coffee <- ((1 - cold) * coffee_warm) + (cold * coffee_cold)
+cola <- ((1 - cold) * cola_warm) + (cold * cola_cold)
+
+coffee
+
+cola
+```
+
+__355__
+
+3) The financial success of a ski resort in Squaw Valley is dependent on the amount of early snowfall in the fall and winter months. If the snowfall is greater than 40 inches, the resort always has a successful ski season. If the snow is between 30 and 40 inches, the resort has a moderate season, and if the snowfall is less than 30 inches, the season is poor, and the resort will lose money. The seasonal snow probabilities from the weather service are displayed in the following table with the expected revenue for the previous 10 seasons. A hotel chain has offered to lease the resort during the winter for $100,000. You must decide whether to operate yourself or lease the resort. Build a decision tree to assist in the decision.
+
+![Table](//Users/bcarancibia/CUNY_IS_609/week8/355.png)
+
+```{r}
+operate <- (0.4 * 280000) + (0.2 * 100000) + (0.4 * -40000)
+lease <- (0.4 * 100000) + (0.2 * 100000) + (0.4 * 100000)
+
+df <- data.frame(option=c("Operate", "Lease"), expVal=c(operate, lease))
+df
+
+```
+
+
