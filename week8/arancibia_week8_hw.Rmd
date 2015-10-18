@@ -54,4 +54,4 @@ df
 
 ```
 
-
+![Decision Tree](//Users/bcarancibia/CUNY_IS_609/week8/tree.png)
