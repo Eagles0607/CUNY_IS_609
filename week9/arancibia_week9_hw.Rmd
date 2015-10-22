@@ -1,0 +1,111 @@
+---
+title: "IS 609 Week 9 Homework"
+author: "Ben Arancibia"
+date: "October 22, 2015"
+output:
+  pdf_document:
+    latex_engine: xelatex
+---
+
+__385__
+
+1) Using the definition provided for the movement diagram, determine whether the following zero-sum games have a pure strategy Nash equilibrium. If the game does have a pure strategy Nash equilibrium, state the Nash equilibrium. Assume the row player is maximizing his payoffs which are shown in the matrices below.
+
+
+a) 
+
+![Table](//Users/bcarancibia/CUNY_IS_609/week9/a.png)
+
+This is a zero sume game and and if we look at the the rows then R1 is the largest for C1 and C2. If look at horizontally then R2 points 5 to 0, but R1 horizontal is neutral, ten to 10. For Colin his best strategy is to select C2. This is not a pure strategy Nash Equilibirum because neither player can benefit by departing from its strategy.
+
+
+
+__385__
+
+1) Using the definition provided for the movement diagram, determine whether the following zero-sum games have a pure strategy Nash equilibrium. If the game does have a pure strategy Nash equilibrium, state the Nash equilibrium. Assume the row player is maximizing his payoffs which are shown in the matrices below.
+
+
+c) 
+
+
+![Table](//Users/bcarancibia/CUNY_IS_609/week9/c.png)
+
+Following the same methodology and investigating the vertical and horizontal rows leads us to .400. The pitcher is best throwing a knuckleball and the batter cannot unilaterally benefit from fashball to knuckleball. The Nash equilibrium is .300 (knuckleball).
+
+
+
+__404__
+
+2a) For problems a-g build a linear programming model for each player's decisions and solve it both geometrically and algebraically. Assume the row player is maximizing his payoffs which are shown in the matrices below.
+
+![Table](//Users/bcarancibia/CUNY_IS_609/week9/a.png)
+
+*Rose*
+
+P = Rose's Payoff 
+x = Portion of R1 strategy 
+1-x = Portion of R2 Strategy
+
+x>=0
+x<=1
+
+P <= 10x + 5(1-x)
+
+P <= 10x + 0(1-x)
+
+```{r,echo=FALSE}
+df <- data.frame(x=c(0,0,1,1), y=c(0,5,10,0))
+dfFeasible <- data.frame(x=c(0,1,1), y=c(0,10,0))
+
+library(ggplot2)
+
+g1 <- ggplot() + geom_point(data=df, aes(x=x, y=y)) +
+  geom_abline(intercept=5, slope=5) +
+  geom_abline(aes(intercept=0, slope=10)) +
+  geom_vline(xintercept=0) +
+  geom_vline(xintercept=1) +
+  geom_polygon(data=dfFeasible, aes(x=x, y=y), fill="blue") +
+  labs(y="P") 
+
+g1
+```
+
+Extreme point is (1,10)
+
+Solve algebraically
+
+x1 - 5x2 + y1 = 5 
+
+x1 - 10x2 + y2 = 0
+
+x2 + y3 = 1 
+
+-x1 + z = 0 
+
+Solve.
+
+The initial extreme point is x1 = x2 = 0, therefore y1 = 5, y2 = 0, y3 = 1, z = 0. 
+
+*Colin*
+
+P = Rose's Payoff
+x2 =Portion of C1 strategy
+1-x2 = Portion of C2 Strategy 
+
+```{r}
+df <- data.frame(x=c(0,0,1,1), y=c(0,10,5,10))
+dfFeasible <- data.frame(x=c(0,0,1,1), y=c(0,10,10,5))
+
+g1 <- ggplot() + geom_point(data=df, aes(x=x, y=y)) +
+  geom_abline(intercept=10, slope=0) +
+  geom_abline(intercept=0, slope=5) +
+  geom_vline(xintercept=0) +
+  geom_vline(xintercept=1) +
+  geom_polygon(data=dfFeasible, aes(x=x, y=y), fill="blue") +
+  labs(y="P", x="x2") 
+
+g1
+```
+
+Extreme point is (0,0)
+
