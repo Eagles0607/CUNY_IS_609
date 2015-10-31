@@ -1,0 +1,24 @@
+---
+title: "IS 609 Week 10 Homework"
+author: "Ben Arancibia"
+date: "October 31, 2015"
+output: word_document
+---
+
+__469__
+
+3) The following data were obtained for the growth of a sheep population introduced into a new environment on the island of Tasmania 
+
+![Table](//Users/bcarancibia/CUNY_IS_609/week10/3.png)
+
+a) Make an estimate of M by graphic P(t)
+
+b) Plot ln[P/(M - P)] against t. If a logistic curve seems reasonable, estimate rM and t*.
+
+__478__
+
+6)
+
+__481__
+
+1) 
