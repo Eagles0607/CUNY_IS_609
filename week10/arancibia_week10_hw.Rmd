@@ -11,14 +11,69 @@ __469__
 
 ![Table](//Users/bcarancibia/CUNY_IS_609/week10/3.png)
 
-a) Make an estimate of M by graphic P(t)
+a) Make an estimate of M by graphing P(t)
+
+```{r}
+
+pt <- data.frame(year=c(1814,1824,1834,1844,1854,1864), Pt=c(125,275,830,1200,1750,1650))
+pt$PtDiff <- rep(NA, nrow(pt))
+for(i in 2:nrow(pt))
+{
+  pt$PtDiff[i] <- pt$Pt[i] - pt$Pt[i - 1]
+}
+pt
+maxPtDiff <- max(pt$PtDiff, na.rm=TRUE)
+PtAtMaxDiff <- na.exclude(pt[pt$PtDiff == maxPtDiff,]$Pt)
+estimatedM <- PtAtMaxDiff * 2
+library(ggplot2)
+
+dfMax <- data.frame(x=c(1814, 1865), y=c(PtAtMaxDiff, PtAtMaxDiff))
+g1 <- ggplot(data=pt) + 
+  geom_line(aes(x=year, y=Pt)) + 
+  geom_abline(intercept=estimatedM, slope=0, colour="red") 
+g1
+```
 
 b) Plot ln[P/(M - P)] against t. If a logistic curve seems reasonable, estimate rM and t*.
 
+```{r}
+M <- 1751
+pt$LnPMP <- log(pt$Pt/(M - pt$Pt))
+pt
+
+g1 <- ggplot(data=pt) + 
+  geom_line(aes(x=year, y=LnPMP)) 
+g1
+
+```
+
+Seems reasonable....though there is a large spike betwee 1850 and 1860. If a logistic curve seems reasonable, estimate rM and t*.
+
+```{r}
+
+rM <- (pt$LnPMP[length(pt$LnPMP)] - pt$LnPMP[1]) / (pt$year[length(pt$year)] - pt$year[1])
+rM
+t <- -1 * pt$LnPMP[1] / rM
+t
+
+pt$year[1] + t
+```
+
 __478__
 
-6)
+6) Suggest other phenomena for which the model described in the text might be used.
+
+The model explained in the text could be used for any problem that has a substance dissolving in a liquid. An example of a problem is below.
+
+A population of insects in a region will grow at a rate that is proportional to their current population.  In the absence of any outside factors the population will triple in two weeks time.  On any given day there is a net migration into the area of 15 insects and 16 are eaten by the local bird population and 7 die of natural causes.  If there are initially 100 insects in the area will the population survive?  If not, when do they die out?
 
 __481__
 
-1) 
+1)
+
+a) Using the estimate that db = 0.054v^2, where 0.054 has dimension ft*hr^2/mi^2, show that the constant k in equation 11.29 has the value of 19.9 ft/sec^2
+
+
+
+b) Using the data in Table 4.4, plot db in ft versus v^2/2in ft^2/sec^2 to estimate 1/k directly
+
