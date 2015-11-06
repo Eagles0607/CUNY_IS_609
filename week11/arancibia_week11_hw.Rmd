@@ -59,6 +59,41 @@ g1
 ```
 
 
+__536__
+
+7) Show that the two trajectories leading to m/n, a/b shown in Figure 12.8 are unique.
+
+a)
+
+\[\frac{dy}{dx}=\frac{(m-nx)y}{(a-b)x}\]
+
+Dividing two autonomous differential equations with each other produces the derivative \(\frac{dy}{dx}\)
+
+\[\frac{dy}{dx}=\frac{\frac{dy}{dt}}{\frac{dx}{dr}}=\frac{(m-nx)y}{(a-b)x}\]
+
+b)
+
+\[\frac{dy}{dx}=\frac{(m-nx)y}{(a-b)x}\]
+
+\[\frac{(a-b) dy}{y}=\frac{(m-nx) dx}{x}\]
+
+\[\frac{a}{y} - \frac{b}{y} dy = \frac{m}{x} - n dx\]
+
+Integrate both sides:
+
+\[a \text{ ln } y - b \text{ ln } y = m \text{ ln } x - nx + K\]
+
+\[a \text{ ln } y - b \text{ ln } y - m \text{ ln } x + nx = K\]
+
+Simplifying, we get:
+
+\[y^a e^{-by} = Kx^me^{-nx}\]
+
+c)
+d)
+e)
+f)
+
 __546__
 
 1) Apply the first and second derivative tests to the function f(y) = y^a / e^by to show that y=a/b is a unique critical point that yields the relative maximum f(a/b) Show also that f(y) approaches zero as y tends to infinity.
