@@ -1,0 +1,102 @@
+---
+title: "IS 609 Week 11 Homework"
+author: "Ben Arancibia"
+date: "November 5, 2015"
+output: pdf_document
+---
+
+__529__
+
+In Problems 5-8, find and classify the rest points of the given autonomous system.
+
+6)
+
+dx/dt = -(y-1)
+
+dy/dt = x-2
+
+The rest point is (2,1). Use deSolve package to help us visualize the various trajectories.
+
+```{r, echo=FALSE}
+library(deSolve)
+library(ggplot2)
+fn <- function(t, yv, b) 
+{
+  x <- yv[1]
+  y <- yv[2]
+  
+  x.p <- (-1 * (y - 1))
+  y.p <- (x-2)
+  
+  return(list(c(x=x.p,y=y.p)))
+}
+
+h <- 0.1
+t <- seq(0, 10, h)
+id <- 0
+dfRk <- data.frame(id=c(), x=c(), y=c())
+for(x in seq(0, 3, 0.5))
+{
+  for(y in seq(0, 3, 0.5))
+  {
+    y0 <- c(x,y)
+    id <- id + 1
+    rk45 <- rk(y0, t, func=fn, parms=1, method="rk45dp7")
+    dfRk <- rbind(dfRk, cbind(id=id, x=rk45[, 2], y=rk45[,3]))
+  }
+}
+
+head(dfRk, 10)
+```
+
+Based on the visualization, (2,1) is stable rest point.
+
+```{r}
+g1 <- ggplot(data=dfRk) +
+  geom_path(aes(x=x, y=y, colour=id, group=id)) 
+g1
+
+```
+
+
+__546__
+
+1) Apply the first and second derivative tests to the function f(y) = y^a / e^by to show that y=a/b is a unique critical point that yields the relative maximum f(a/b) Show also that f(y) approaches zero as y tends to infinity.
+
+
+First derivative:
+f(y) = y^a/e^by 
+
+f(y) = y^a * e^-by
+
+product rule:
+
+f'(y) = y^a * -b e^-by + ay^a-1 * e^-by
+
+Sove for y
+
+f'(y) = y^a * -b e^-by + ay^a-1 * e^-by = 0
+
+f'(y) = e^-by (-by^a + ay^a-1) = 0
+
+2 zeroes of the first derivative. 
+
+e^-by = 0  and  -by^a + ay^a-1 = 0
+
+Solve for y from equation -by^a + ay^(a-1) = 0:
+
+-by^a + ay^a-1 = 0
+
+ay^(a-1) = by^a
+
+a = by^a/y^(a-1) = by
+
+(a)/(b) = y
+
+Determining second derivative:
+
+f'(y) = e^(-by) (-by^a + ay^(a-1)
+
+product rule:
+
+
