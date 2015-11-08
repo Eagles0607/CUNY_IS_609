@@ -2,7 +2,9 @@
 title: "IS 609 Week 10 Homework"
 author: "Ben Arancibia"
 date: "October 31, 2015"
-output: word_document
+output:
+  pdf_document:
+    latex_engine: xelatex
 ---
 
 __469__

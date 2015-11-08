@@ -65,19 +65,19 @@ __536__
 
 a)
 
-\[\frac{dy}{dx}=\frac{(m-nx)y}{(a-b)x}\]
+dy/dx=(m-nx)y/(a-b)x]
 
-Dividing two autonomous differential equations with each other produces the derivative \(\frac{dy}{dx}\)
+Dividing two autonomous differential equations with each other produces the derivative dy/dx
 
-\[\frac{dy}{dx}=\frac{\frac{dy}{dt}}{\frac{dx}{dr}}=\frac{(m-nx)y}{(a-b)x}\]
+dy/dx=dy/dt dx/dr =(m-nx)y/(a-b)x
 
 b)
 
-\[\frac{dy}{dx}=\frac{(m-nx)y}{(a-b)x}\]
+dy/dx=(m-nx)y/(a-b)x
 
-\[\frac{(a-b) dy}{y}=\frac{(m-nx) dx}{x}\]
+(a-b) dy/y=(m-nx) dx/x
 
-\[\frac{a}{y} - \frac{b}{y} dy = \frac{m}{x} - n dx\]
+a/y - b/y dy = m/x - n dx
 
 Integrate both sides:
 
@@ -89,10 +89,6 @@ Simplifying, we get:
 
 \[y^a e^{-by} = Kx^me^{-nx}\]
 
-c)
-d)
-e)
-f)
 
 __546__
 
@@ -128,10 +124,6 @@ a = by^a/y^(a-1) = by
 
 (a)/(b) = y
 
-Determining second derivative:
 
-f'(y) = e^(-by) (-by^a + ay^(a-1)
-
-product rule:
 
 
