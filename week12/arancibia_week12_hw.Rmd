@@ -18,14 +18,63 @@ If costs should be assigned to stock-outs depends on the customer's perception o
 
 How would you make such an assignment?
 
-Inorder to assign stock-out costs, we need to first quantify them. This could be done using the number of units demanded below zero times some cost (g). This could also be done using a negative stock buffer (q_b).
+To assign stock-out costs, they have to quantified: number of units demanded below zero times some cost g, negative stock buffer qb
 
-[w= \begin{cases} 0 & \quad \mathrm{q_t \ge 0} \ q_t * g & \quad \mathrm{q_t \le 0} \ \end{cases} ]
+w = 0 
+w = qt * g
 
-Beginning with the cost per per cycle equation, we add the loss of goodwill cost (w) as shown below:
+qt >= 0
+qt <= 0
 
-[\text{cost per cycle }= d + s \frac{q}{2} t + w]
+the cost per cycle is:
+
+d + s(q/2)t + w
+
+What assumptions are implied by the model in Figure 13.7?
+
+The assumptions applied assumes instant stock on delivery and regular depletion of stock over the course of a cycle. 
 
 
 
-The graphical model in Figure 13.7 assumes instant stocking on delivery and a regular depletion of stock over the course of a cycle. Additionally, the regular depletion being demand is not variable but rather at a fixed rate of change.
+__591__
+
+5) Find the hottest point (x,y,z) along the ellipitcal orbit
+
+4x^2 + y^2 + 4z^2 = 16
+
+where the temperature function is
+
+T(x,y,z) = 8x^2 + 4yz - 16z + 600
+
+Using the Lagrangian Multiplier technique:
+
+[L(x,y,z,\lambda)=8x^2+4yz-16z+600 + \lambda[4x^2+y^2+4z^2-16]]
+
+Next, we find the partial derivatives of (L) with respect to each variable:
+
+[\frac{\partial L}{\partial x} = 16x + 8x\lambda]
+
+[\frac{\partial L}{\partial y} = 4z + 2 \lambda y]
+
+[\frac{\partial L}{\partial z} = 4y - 16 + 8 \lambda z]
+
+[\frac{\partial L}{\partial \lambda} = 4x^2 + y^2 + 4z^2 - 16]
+
+Solving the equations for 0 we get (x=0, y=\frac{-2z}{\lambda}=\frac{-4}{\lambda^2-1}, z=\frac{2\lambda}{\lambda^2-1}, \text{ and } \lambda=0 ).
+
+Plugging in these values:
+
+(x=0, y=4, z=0, \text{ and } \lambda=0 )
+
+[L(0,4,0,0)=8(0)^2+4(4)(0)-16(0)+600 + (0)[4x^2+y^2+4z^2-16] = 600]
+
+
+_599_
+
+5) One of the key assumptions underlying the models developed in this section is that the harvest rate equals the growth rate for a sustained yield. The reprodcution submodels in Figures 13.19 and 13.22 suggest that if the current population levels are known, it is possible to estimate the growth rate. The implication of this knowledge is that if a quota for the season is established based on the estimated growth rate, then the fish population can be maintained, increased, or decreased as desired. This quota system might be implemented by requiring all commercial fisherman to register their catch daily and then closing the season when the quota is reached.
+
+
+
+
+
+
