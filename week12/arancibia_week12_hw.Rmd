@@ -3,7 +3,8 @@ title: "IS 609 Week 12 Homework"
 author: "Ben Arancibia"
 date: "November 11, 2015"
 output:
-  pdf_document: default
+  pdf_document:
+    latex_engine: xelatex
 ---
 
 __576__
@@ -48,23 +49,27 @@ T(x,y,z) = 8x^2 + 4yz - 16z + 600
 
 Using the Lagrangian Multiplier technique:
 
-[L(x,y,z,\lambda)=8x^2+4yz-16z+600 + \lambda[4x^2+y^2+4z^2-16]]
+L(x,y,z,lambda)=8x^2+4yz-16z+600 + lambda[4x^2+y^2+4z^2-16]
 
 Next, we find the partial derivatives of (L) with respect to each variable:
 
-[\frac{\partial L}{\partial x} = 16x + 8x\lambda]
+L/x = 16x + 8x*lambda
 
-[\frac{\partial L}{\partial y} = 4z + 2 \lambda y]
+L/y = 4z + 2*lambda * y
 
-[\frac{\partial L}{\partial z} = 4y - 16 + 8 \lambda z]
+L/z = 4y - 16 + 8 *lambda * z
 
-[\frac{\partial L}{\partial \lambda} = 4x^2 + y^2 + 4z^2 - 16]
+L/lambda = 4x^2 + y^2 + 4z^2 - 16
 
-Solving the equations for 0 we get (x=0, y=\frac{-2z}{\lambda}=\frac{-4}{\lambda^2-1}, z=\frac{2\lambda}{\lambda^2-1}, \text{ and } \lambda=0 ).
+Solving the equations for 0 we get 
+x=0
+y=-2z/lambda = -4/lambda^2-1, 
+z=2*lambda/lambda^2-1}
+and lambda=0 .
 
 Plugging in these values:
 
-(x=0, y=4, z=0, \text{ and } \lambda=0 )
+(x=0, y=4, z=0, lambda=0 )
 
 [L(0,4,0,0)=8(0)^2+4(4)(0)-16(0)+600 + (0)[4x^2+y^2+4z^2-16] = 600]
 
