@@ -71,7 +71,19 @@ Plugging in these values:
 
 _599_
 
-5) One of the key assumptions underlying the models developed in this section is that the harvest rate equals the growth rate for a sustained yield. The reprodcution submodels in Figures 13.19 and 13.22 suggest that if the current population levels are known, it is possible to estimate the growth rate. The implication of this knowledge is that if a quota for the season is established based on the estimated growth rate, then the fish population can be maintained, increased, or decreased as desired. This quota system might be implemented by requiring all commercial fisherman to register their catch daily and then closing the season when the quota is reached.
+5) One of the key assumptions underlying the models developed in this section is that the harvest rate equals the growth rate for a sustained yield. The reproduction submodels in Figures 13.19 and 13.22 suggest that if the current population levels are known, it is possible to estimate the growth rate. The implication of this knowledge is that if a quota for the season is established based on the estimated growth rate, then the fish population can be maintained, increased, or decreased as desired. This quota system might be implemented by requiring all commercial fisherman to register their catch daily and then closing the season when the quota is reached. 
+
+Discuss the difficulties in determining reproduction models precise enough to be used in this manner. How would you estimate the population level? 
+
+
+To create a model, often simplifying assumptions need to be made. To estimate population level the birth and death rates for the species would be used to estimate natural population level change from year to year. Also, the carrying capacity of the environment and the biological optimum population would need to be formulated. Finally, a factor for if the population is already being harvested need to included.
+
+What are the disadvantages of having a quota that varies from year to year? 
+
+A fluctuating quota could make forecasting difficult and would require a model that takes in the quota as a variable.
+
+Discuss the practical political difficulties of implementing such a procedure.
+This type of regulation would likely be fought by business, especially. If enacted, the quota procedure depends on all fisherman self reporting or government regulators to be at hte port. Fisherman might not self-report, and government monitoring could be costly and incomplete. Often times quotas are periods of time in which fishermen can work.
 
 
 
