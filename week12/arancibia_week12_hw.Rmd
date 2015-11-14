@@ -1,0 +1,31 @@
+---
+title: "IS 609 Week 12 Homework"
+author: "Ben Arancibia"
+date: "November 11, 2015"
+output:
+  pdf_document: default
+---
+
+__576__
+
+2) Consider a company that allows back ordering. That is, the company notifies customers that a temporary stock-out exists and that their order will be filled shortly. What conditions might argue for such a policy? What effect does such a policy have on storage costs? Should costs be assigned to stock-outs? Why? How would you make such an assignment? What assumptions are implied by the model in Figure 13.7? Suppose a "loss of goodwill cost" of w dollars per unit per day is assigned to each stock-out. Compute the optimal order quantity Q* and interpret your model.
+
+
+Conditions that might argue for such a policy are if storage costs are high and delivery costs are low. This might result in a back-ordering policy. This type of policy would lower average storage cost per unit as a result of pre-sold items. The effect that this policy has on storage costs is that pre-sold items would have a 0 storage cost, and would lower the average storage cost per item.
+
+Should costs be assigned to stock-outs? Why?
+If costs should be assigned to stock-outs depends on the customer's perception of the stock-out. If they are unhappy and might take their business to another supplier, then yes. Otherwise, no costs should not be assigned to stock-outs.
+
+How would you make such an assignment?
+
+Inorder to assign stock-out costs, we need to first quantify them. This could be done using the number of units demanded below zero times some cost (g). This could also be done using a negative stock buffer (q_b).
+
+[w= \begin{cases} 0 & \quad \mathrm{q_t \ge 0} \ q_t * g & \quad \mathrm{q_t \le 0} \ \end{cases} ]
+
+Beginning with the cost per per cycle equation, we add the loss of goodwill cost (w) as shown below:
+
+[\text{cost per cycle }= d + s \frac{q}{2} t + w]
+
+
+
+The graphical model in Figure 13.7 assumes instant stocking on delivery and a regular depletion of stock over the course of a cycle. Additionally, the regular depletion being demand is not variable but rather at a fixed rate of change.
