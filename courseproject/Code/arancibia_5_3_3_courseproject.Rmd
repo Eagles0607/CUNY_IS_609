@@ -1,0 +1,47 @@
+---
+title: "Is 609 Course Project"
+author: "Ben Arancibia"
+date: "November 17, 2015"
+output: pdf_document
+---
+
+__Chapter 5 Section 3 Project 3__
+
+
+#Problem
+
+Craps - Construct and perform a Monte Carlo simulation of the popular casino game of craps. The rules are as follows:
+
+There are two basic bets in craps, pass and don’t pass. In the pass bet, you wager that the shooter (the person throwing the dice) will win; in the don’t pass bet, you wager that the shooter will lose. We will play by the rule that on an initial roll of 12 ("boxcars"), both pass and don’t pass bets are losers. Both are even-money bets.
+
+Conduct of the game:
+Roll a 7 or 11 on the first roll: Shooter wins (pass bets win and don’t pass bets lose). Roll a 12 on the first roll: Shooter loses (boxcars; pass and don’t pass bets lose).
+Roll a 2 or 3 on the first roll: Shooter loses (pass bets lose, don’t pass bets win).
+
+Roll 4, 5, 6, 8, 9, 10 on the first roll: This becomes the point. The object then becomes to roll the point again before rolling a 7.
+The shooter continues to roll the dice until the point or a 7 appears. Pass bettors win if the shooter rolls the point again before rolling a 7. Don’t pass bettors win if the shooter rolls a 7 before rolling the point again.
+
+Write an algorithm and code it in the computer language of your choice. Run the simulation to estimate the probability of winning a pass bet and the probability of winning a don’t pass bet. Which is the better bet? As the number of trials increases, to what do the probabilities converge?
+
+#Solution
+Craps is a game where two dice are rolled amd the dice rolls events are independent of each other. Possible totals from rolling two dice are seen in the table below. 
+
+&nbsp;|&nbsp;|1 |  2 |  3 |	4 |	5 |	6
+--|--|----|---|---|---|---|---
+1	|&nbsp;|2 |	3 |	4 |	5 |	6 |	7 
+2	|&nbsp;|3 |	4 |	5 |	6 |	7 |	8 
+3	|&nbsp;|4 |	5 |	6 |	7 |	8 |	9 
+4	|&nbsp;|5 |	6 |	7 |	8 |	9 |	10 
+5	|&nbsp;|6 |	7 |	8 |	9 |	10|	11 
+6	|&nbsp;|7 |	8 |	9 |	10|	11|	12 
+
+To roll a 7 or 11, which is defined as shooter wins, on the first roll is 8/36
+
+to roll a 2, 3, or 12, which is defined as shooter loses, on the first roll is 4/36
+
+
+There are two types of bets that we are dealing with in this problem - Pass and Don't Pass. In the Pass bet, the gambler wins only when Shooter wins and in Don't Pass bet the gambler wins only when Shooters loses except the Boxcars (Roll a 12 on the first roll).  
+
+
+
+
