@@ -143,19 +143,20 @@ cbPalette <- c("red", "lightblue", "pink")
 ```
 
 ```{r}
-
-
 f1 <- ggplot(data=dfCurves) + 
   geom_line(aes(x=q, y=p, color=curve)) + 
-  scale_colour_manual(values=cbPalette) + 
   labs(title="Steep Demand Curve") 
 f1
 ```
 
-Pre-tax equilibrium is at (p=166.67, q=16.67). When a $100 tax is added, equilibrium changes to (p=250, q=15). The consumer will pay (250 - 166.67 = $83.33) of the tax, and the supplier will pay the balance $16.67.
+Pre-tax equilibrium is at p=166.67 and q=16.67.
+
+$100 tax is added, equilibrium changes to p=250 and 1=15. 
+
+The consumer will pay $83.33 of the tax, and the supplier will pay the balance $16.67.
 
 
-```{r}
+```{r, tidy=TRUE}
 q <- seq(0, 30)
 tax <- 100
 dfCurves <- data.frame(q=q, p=supplyCurve(q, 10), curve=rep("Supply", length(q)))
@@ -164,14 +165,17 @@ dfCurves <- rbind(dfCurves, data.frame(q=q, p=supplyCurve(q, 10) + tax, curve=re
 
 g1 <- ggplot(data=dfCurves) + 
   geom_line(aes(x=q, y=p, color=curve)) + 
-  scale_colour_manual(values=cbPalette) + 
   labs(title="Shallow Demand Curve") 
 g1
 
 ```
 
 
-In a shallow demand curve scenario, pre-tax equilibrium is at (p=266.67, q=26.67). When $100 tax is added, the equilibrium shifts to (p=300, q=20) where the consumer pays (300 - 266.67 = $33.33) and the supplier pays the balance of the tax, $66.67 ( the majority).
+In a shallow demand curve scenario, pre-tax equilibrium is at p=266.67 and q=26.67. 
+
+$100 tax is added, the equilibrium shifts to p=300 and q=20.
+
+The consumer pays $33.33 and the supplier pays the balance of the tax, $66.67 
 
 
 ```{r, tidy=TRUE}
@@ -186,14 +190,17 @@ dfCurves <- rbind(dfCurves, data.frame(q=q, p=supplyCurve(q, sm) + tax, curve=re
 ```{r, echo=FALSE}
 g1 <- ggplot(data=dfCurves) + 
   geom_line(aes(x=q, y=p, color=curve)) + 
-  scale_colour_manual(values=cbPalette) + 
   labs(title="Steep Supply Curve") 
 g1
 ```
 
-In a steep supply curve scenario, pre-tax equilibrium is at (p=216.3, q=7.21). When $100 tax is added, the equilibrium shifts to (p=263.5, q=5.45) where the consumer pays (263.5 - 216.3 = $47.20) and the supplier pays the balance of the tax, $52.80 ( the majority).
+In a steep supply curve scenario, pre-tax equilibrium is at p=216.3 and q=7.21. 
 
-```{r}
+$100 tax is added, the equilibrium shifts to p=263.5 and q=5.45.
+
+The consumer pays $47.20 and the supplier pays the balance of the tax, $52.80.
+
+```{r, tidy=TRUE}
 q <- seq(0, 15)
 tax <- 100
 sm <- 5
@@ -205,9 +212,12 @@ dfCurves <- rbind(dfCurves, data.frame(q=q, p=supplyCurve(q, sm) + tax, curve=re
 ```{r}
 g1 <- ggplot(data=dfCurves) + 
   geom_line(aes(x=q, y=p, color=curve)) + 
-  scale_colour_manual(values=cbPalette) + 
   labs(title="Shallow Supply Curve") 
 g1
 ```
 
-In a shallow supply curve scenario, pre-tax equilibrium is at (p=66.65, q=13.33). When $100 tax is added, the equilibrium shifts to (p=150, q=10) where the consumer pays (150 - 66.65 = $83.35) (the majority) of the tax and the supplier pays the balance of the tax, $16.65.
+In a shallow supply curve scenario, pre-tax equilibrium is at p=66.65 and q=13.33). 
+
+When $100 tax is added, the equilibrium shifts to p=150 and q=10 
+
+The consumer pays $83.35 of the tax and the supplier pays the balance of the tax, $16.65.
