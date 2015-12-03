@@ -1,0 +1,106 @@
+---
+title: "Chapter 9.4 Project 4"
+author: "Xingjia Wu"
+output: pdf_document
+---
+
+The NBC TV network earns an average of $400,000 from a hit show and loses an average of $100,000 on a flop (a show that cannot hold its rating and must be canceled). If the network airs a show without a market review, 25% turn out to be hits, and 75% are flops. For $40,000, a market research firm can be hired to help determine whether the show will be a hit or a flop. If the show is actually going to be a hit, there is a 90% chance that the market research firm will predict a hit. If the show is going to be a flop, there is an 80% chance that the market research will predict the show to be a flop. Determine how the network can maximize its profits over the long haul.
+
+## Decision tree diagram
+
+A decision tree diagram is shown below.
+
+![](tree.jpg)
+
+The probabilities are queried from built network using gRain package.
+
+## Build network
+
+```{r}
+# source("http://bioconductor.org/biocLite.R")
+# biocLite(c('Rgraphviz','gRbase','gRain','RBGL'))
+
+suppressWarnings(suppressMessages(library(Rgraphviz)))
+suppressWarnings(suppressMessages(library(gRain)))
+
+
+hf <- c("hit", "flop")
+phf <- c("p.hit", "p.flop")
+
+# Specify the Conditional Probability Tables
+show <- cptable(~show, values=c(25, 75), levels=hf)
+predict <- cptable(~predict|show, values= c(0.9, 0.1, 0.2, 0.8), levels=phf)
+
+# Compile plist
+plist <- compileCPT(list(show, predict))
+summary(plist)
+```
+
+
+
+```{r}
+# Build the network
+net <- grain(plist)
+```
+
+## Query the network to get probabilities
+
+- The probability that the market review predicts a hit
+
+```{r}
+q1 <- setFinding(net, nodes="predict", states=c("p.hit"))
+(phit <- pFinding(q1))
+```
+
+There is probability of 0.375 that the market review will predict a hit. In this condition, the show will be on. 
+
+- The probability the market review predicts a flop
+
+```{r}
+q2 <- setFinding(net, nodes="predict", states=c("p.flop"))
+(pflop <- pFinding(q2))
+```
+
+There is probability of 0.625 that the market review will predict a flop. In this condition, the show will be off. 
+
+- For the show condition (which the market review predicts a hit), we need to find out the probability the show actually turns out to be a hit or a flop. 
+
+```{r}
+(querygrain(q1, nodes = "show", type="marginal"))
+```
+
+When market review predicts a hit, the probabilities that a show actually turns out to be hit or flop are 0.6 and 0.4, respectively. 
+
+## Calculate the expected profits
+
+- Calculate the expected profit of airing show
+
+```{r}
+hit <- 400
+flop <- -100
+review <- -40
+(show.profit <- 0.6*(hit+review)+0.4*(flop+review))
+```
+
+The expected profit of airing show will be 160k.
+
+- Calculate the expected profit of hiring a market review
+
+```{r}
+noshow.loss <- review
+(hire.profit <- phit*show.profit + pflop*noshow.loss)
+```
+
+The expected profit of hiring a market review is 35k.
+
+- Calculate the expected profit of not hiring market review
+
+```{r}
+(no.hire.profit <- 0.25*hit +0.75*flop)
+```
+
+The expected profit of not hiring market review is 25k.
+
+## Conclusion
+
+Since the expected profit of hiring market review (35k) is higher than not hiring (25k), the network can hire a market review to maximize its profits over the long haul. 
