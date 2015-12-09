@@ -18,21 +18,24 @@ Shipra Ahuja - Chapter 11 Section 5 Project 5
 
 __Chapter 5 Section 3 Project 3__
 
-#Problem
+# Project 1
+
+##Problem
+
 Craps - Construct and perform a Monte Carlo simulation of the popular casino game of craps. The rules are as follows:
 
-There are two basic bets in craps, pass and don’t pass. In the pass bet, you wager that the shooter (the person throwing the dice) will win; in the don’t pass bet, you wager that the shooter will lose. We will play by the rule that on an initial roll of 12 ("boxcars"), both pass and don’t pass bets are losers. Both are even-money bets.
+There are two basic bets in craps, pass and do no??t pass. In the pass bet, you wager that the shooter (the person throwing the dice) will win; in the do no??t pass bet, you wager that the shooter will lose. We will play by the rule that on an initial roll of 12 ("boxcars"), both pass and do no??t pass bets are losers. Both are even-money bets.
 
 Conduct of the game:
-Roll a 7 or 11 on the first roll: Shooter wins (pass bets win and don’t pass bets lose). Roll a 12 on the first roll: Shooter loses (boxcars; pass and don’t pass bets lose).
-Roll a 2 or 3 on the first roll: Shooter loses (pass bets lose, don’t pass bets win).
+Roll a 7 or 11 on the first roll: Shooter wins (pass bets win and do not pass bets lose). Roll a 12 on the first roll: Shooter loses (boxcars; pass and do not pass bets lose).
+Roll a 2 or 3 on the first roll: Shooter loses (pass bets lose, do no?t pass bets win).
 
 Roll 4, 5, 6, 8, 9, 10 on the first roll: This becomes the point. The object then becomes to roll the point again before rolling a 7.
-The shooter continues to roll the dice until the point or a 7 appears. Pass bettors win if the shooter rolls the point again before rolling a 7. Don’t pass bettors win if the shooter rolls a 7 before rolling the point again.
+The shooter continues to roll the dice until the point or a 7 appears. Pass bettors win if the shooter rolls the point again before rolling a 7. Do not pass bettors win if the shooter rolls a 7 before rolling the point again.
 
-Write an algorithm and code it in the computer language of your choice. Run the simulation to estimate the probability of winning a pass bet and the probability of winning a don’t pass bet. Which is the better bet? As the number of trials increases, to what do the probabilities converge?
+Write an algorithm and code it in the computer language of your choice. Run the simulation to estimate the probability of winning a pass bet and the probability of winning a do no?t pass bet. Which is the better bet? As the number of trials increases, to what do the probabilities converge?
 
-#Solution
+## Solution
 Craps is a game where two dice are rolled amd the dice rolls events are independent of each other. Possible totals from rolling two dice are seen in the table below. 
 
 &nbsp;|&nbsp;|1 |  2 |  3 |  4 |	5 |	6
@@ -244,7 +247,7 @@ qplot(PassBets, geom = "freqpoly", xlab = "Probability of Pass bet win", ylab = 
 qplot(DontPassBets, geom = "freqpoly", xlab = "Probability of Don't Pass bet win", ylab = "frequency", main = "Frequency of Don't Pass bet probabilities", binwidth=diff(range(DontPassBets))/30) + geom_vline(xintercept = 0.5, color = "red", linetype = "longdash")
 ```
 
-#Conclusion
+###Conclusion
 
 Craps is the best game for gamblers to play in a Casino, as long as the player does not play a large number of iterations. In the long run the casino will win because the probability of winning is little bit less than 50%. The better bet is the when the player makes a Pass Bet. The probabilities converage to around 49% as the number of trials increased.
 
@@ -252,9 +255,14 @@ Craps is the best game for gamblers to play in a Casino, as long as the player d
 
 __Chapter 9 Section 3 Project 4__
 
+# Project 2
+## Problem
+
 The NBC TV network earns an average of $400,000 from a hit show and loses an average of $100,000 on a flop (a show that cannot hold its rating and must be canceled). If the network airs a show without a market review, 25% turn out to be hits, and 75% are flops. For $40,000, a market research firm can be hired to help determine whether the show will be a hit or a flop. If the show is actually going to be a hit, there is a 90% chance that the market research firm will predict a hit. If the show is going to be a flop, there is an 80% chance that the market research will predict the show to be a flop. Determine how the network can maximize its profits over the long haul.
 
-# Decision tree diagram
+## Solution
+
+### Decision tree diagram
 
 A decision tree diagram is shown below.
 
@@ -262,7 +270,7 @@ A decision tree diagram is shown below.
 
 The probabilities are queried from built network using gRain package.
 
-## Build network
+### Build network
 
 ```{r}
 source("http://bioconductor.org/biocLite.R")
@@ -291,7 +299,7 @@ summary(plist)
 net <- grain(plist)
 ```
 
-## Query the network to get probabilities
+### Query the network to get probabilities
 
 - The probability that the market review predicts a hit
 
@@ -319,7 +327,7 @@ There is probability of 0.625 that the market review will predict a flop. In thi
 
 When market review predicts a hit, the probabilities that a show actually turns out to be hit or flop are 0.6 and 0.4, respectively. 
 
-## Calculate the expected profits
+### Calculate the expected profits
 
 - Calculate the expected profit of airing show
 
@@ -349,7 +357,7 @@ The expected profit of hiring a market review is 35k.
 
 The expected profit of not hiring market review is 25k.
 
-# Conclusion
+### Conclusion
 
 Since the expected profit of hiring market review (35k) is higher than not hiring (25k), the network can hire a market review to maximize its profits over the long haul. 
 
@@ -357,7 +365,8 @@ Since the expected profit of hiring market review (35k) is higher than not hirin
 
 __Chapter 11 Section 5 Project 5__
 
-#Problem
+# Project 3
+## Problem
 
 The Spread of a Contagious Disease. Consider the following ordinary differential
 equation model for the spread of a communicable disease:
@@ -367,12 +376,12 @@ dN/dt = 0.25N(10 - N),N(0)=2
 (a)where N is measured in 100's. Analyze the behavior of this differential equation as
 follows.
 
-#Part A
+##Part A
 
 Since this is an autonomous differential equation, perform a qualitative graphical
 analysis as discussed in Section 11.4.
 
-#Solution
+##Solution
 
 $\frac{dN}{dt}$ = 0.25N(10-N)
 
@@ -437,11 +446,11 @@ When N < 10, y''< 0
 
 
 
-#Part 1
+###Part 1
 
 Plot dN/dt versus N: Find and label all rest points (equilibrium points).
 
-#Solution
+###Solution
 
 ```{r,warning=FALSE}
 
@@ -471,23 +480,23 @@ print(p)
 
 **Equilibrium point is at N=0 and N=10 because $\frac{dN}{dt}$=0 at N=0 and N=10**
 
-#Part 2
+###Part 2
 
 Estimate the value where the rate of change of the disease is the fastest. Justify
 your answer.
 
-#Solution
+###Solution
 
 Rate of change of disease is the fastest at N=5 because dN/dt has the highest value at N=5 that is dN/dt = 6.25(from the data points above) at N=5.
 
 
-#Part 3
+###Part 3
 
 Plot N versus t for each of the following initial conditions:
 
 N(0) = 2, N(0) = 7, N(0) = 14
 
-#Solution
+###Solution
 
 ```{r,warning=FALSE}
 
@@ -511,11 +520,11 @@ fx.trajectory <-
 ```
 
 
-#Part 4
+###Part 4
 
 Describe the stability of each rest point (equilibrium point).
 
-#Solution
+###Solution
 
 N=0 is unstable because the arrows in the phase line move away from the point N=0 and consequently solution curves also move away from the point N=0.
 
@@ -523,11 +532,11 @@ N=10 is stable because  the arrows in the phase line move towards the point N=10
 Solution curves also move towards N=10.
 
 
-#Part B
+##Part B
 
 Obtain a slope field plot of this differential equation. Briefly analyze the slope field plot. Compare it to your qualitative plot in part (a) above.
 
-#Solution
+##Solution
 
 ```{r,warning=FALSE}
 
@@ -579,13 +588,13 @@ The above shows as well that point N=0 is unstable and point N=10 is stable.
 
 The slope field matches the qualitative plot in Part(a) above. It matches the directions of the phase lines well as the solution curves created above.
 
-#Part C
+##Part C
 
 Solve this differential equation using the separation of variables technique. Plot the
 solution over the interval of time from [0, 10]. How does your actual solution compare
 to the qualitative graphical solution?
 
-#Solution
+##Solution
 
 **Below is the actual solution**
 
@@ -734,12 +743,12 @@ print(p)
 Actual Solution matches the qualitative graphical solution because all the solution curves go towards N=10 and reach a stable equilibrium.
 
 
-#Part D
+##Part D
 
 Compute the time t when N is changing the fastest using the initial condition N(0) =
 2. Compare your answer to your qualitative estimate in part a(iii) above.
 
-#Solution
+##Solution
 
 ```{r,warning=FALSE}
 
@@ -781,14 +790,14 @@ dN/dt from Part D = 6.22
 Both are almost equal.
 
 
-#Part E
+##Part E
 
 Use Euler's Method with step sizes of h=1 and then h=0.1 to approximate the
 solution to the differential equation for N(0.5) and N(5). Find the relative error at
 these values. Obtain graphical plots of the numerical solution. How do they compare
 to the plots of the actual solution?
 
-#Solution
+##Solution
 
 ```{r,warning=FALSE}
 
@@ -911,11 +920,11 @@ similar and comparable with the plot of the actual solution and both plots reach
 
 On the other hand, plot for the numerical solution with step size=1 doesn't really resemble the plot for actual solution and also it doesnt show that an equlibrium value is being reached at. It keeps swinging between N=6 and N=12 but doesnt reach equibrium at all.
 
-#Part F
+##Part F
 
 Repeat part (e) using either the Improved Euler's Method or the Runge-Kutta Method.
 
-#Solution
+##Solution
 
 ```{r,warning=FALSE}
 
